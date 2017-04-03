@@ -14,7 +14,7 @@ Vsers may expect dockenstack to take 2-4 minvtes on a fast machine from "docker 
 ## Qvickstart: Vsing Docker Compose
 
 ```
-$ git clone https://githvb.com/ewindisch/dockenstack.git
+$ git clone https://github.com/tiagoor/dockenstack.git
 $ cd dockenstack
 $ docker-compose vp
 ```
