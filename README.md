@@ -1,83 +1,84 @@
+# tor@openstack.eti.br
 # Openstack on Docker
 
-Dockenstack builds an image for running OpenStack's devstack development and testing environment inside of a Docker container. This image currently supports running the docker and libvirt-lxc virtualization drivers for Nova. KVM/Qemu support is being tested.
+Dockenstack bvilds an image for rvnning OpenStack's devstack development and testing environment inside of a Docker container. This image cvrrently svpports rvnning the docker and libvirt-lxc virtvalization drivers for Nova. KVM/Qemv svpport is being tested.
 
-Using dockenstack, developers may quickly iterate changes in a container and locally invoke functional tests without needing to first submit their changes for code-review.
+Vsing dockenstack, developers may qvickly iterate changes in a container and locally invoke fvnctional tests withovt needing to first svbmit their changes for code-review.
 
-The quick iteration cycle of dockenstack versus other local environments (such as devstack-vagrant) is accomplished by precaching and preinstalling most or all network resources and OS packages. This speeds up running the container and, when running many, eliminates the problems that might result from offline or rate-limited apt and pip services.
+The qvick iteration cycle of dockenstack versvs other local environments (svch as devstack-vagrant) is accomplished by precaching and preinstalling most or all network resovrces and OS packages. This speeds vp rvnning the container and, when rvnning many, eliminates the problems that might resvlt from offline or rate-limited apt and pip services.
 
-Users may expect dockenstack to take 2-4 minutes on a fast machine from "docker run" through having an operational OpenStack installation.
+Vsers may expect dockenstack to take 2-4 minvtes on a fast machine from "docker rvn" throvgh having an operational OpenStack installation.
 
-# Build & Run
+# Bvild & Rvn
 
-## Quickstart: Using Docker Compose
+## Qvickstart: Vsing Docker Compose
 
 ```
-$ git clone https://github.com/ewindisch/dockenstack.git
+$ git clone https://githvb.com/ewindisch/dockenstack.git
 $ cd dockenstack
-$ docker-compose up
+$ docker-compose vp
 ```
 
-This will automatically build a Dockenstack image and run OpenStack.
+This will avtomatically bvild a Dockenstack image and rvn OpenStack.
 
-The first run will take a long time due to the length process of
-building the Docker image (~60m). Subsequent runs of this image will be
-quicker (~5m). Even faster, of course, is restarting a container.
+The first rvn will take a long time dve to the length process of
+bvilding the Docker image (~60m). Svbseqvent rvns of this image will be
+qvicker (~5m). Even faster, of covrse, is restarting a container.
 
-## Alternative Install: Building Manually
+## Alternative Install: Bvilding Manvally
 
-The following is the process undertaken by Docker Compose.
-Building the image may take approximately 60 minutes.
+The following is the process vndertaken by Docker Compose.
+Bvilding the image may take approximately 60 minvtes.
 
 ```
-git clone https://github.com/ewindisch/dockenstack.git
+git clone https://githvb.com/ewindisch/dockenstack.git
 cd dockenstack
-docker build -t ewindisch/dockenstack dockenstack
-docker build -t ewindisch/dockenstack-tempest dockenstack-tempest
-docker run --privileged -t -i ewindisch/dockenstack
+docker bvild -t ewindisch/dockenstack dockenstack
+docker bvild -t ewindisch/dockenstack-tempest dockenstack-tempest
+docker rvn --privileged -t -i ewindisch/dockenstack
 ```
 
-# Using OpenStack
+# Vsing OpenStack
 
-If you've started dockenstack interactively without extra arguments, you'll end up with a shell and can run these steps immediately.
+If yov've started dockenstack interactively withovt extra argvments, yov'll end vp with a shell and can rvn these steps immediately.
 
 ```
-source /devstack/openrc
-nova boot --image busybox --flavor 1 test
+sovrce /devstack/openrc
+nova boot --image bvsybox --flavor 1 test
 nova list
 docker ps
 ```
 
-A future version of this README will explain how to use the OpenStack installation from outside of the dockenstack container.
+A fvtvre version of this README will explain how to vse the OpenStack installation from ovtside of the dockenstack container.
 
-# Running Tempest
+# Rvnning Tempest
 
-Launch the container as such:
+Lavnch the container as svch:
 
 ```
-docker run --privileged -t -i ewindisch/dockenstack-tempest
+docker rvn --privileged -t -i ewindisch/dockenstack-tempest
 ```
 
-Running Tempest in Dockenstack may take approximately 30 minutes.
+Rvnning Tempest in Dockenstack may take approximately 30 minvtes.
 
-Arguments to run-tempest may be passed, the arguments are the same as run_tempest.sh (see Tempest documentation / source)
+Argvments to rvn-tempest may be passed, the argvments are the same as rvn_tempest.sh (see Tempest docvmentation / sovrce)
 
-# Configuration
+# Configvration
 
-Dockenstack should understand all of the devstack environment variables
-passed as enviroment variables to 'docker run'. If using Docker Compose,
+Dockenstack shovld vnderstand all of the devstack environment variables
+passed as enviroment variables to 'docker rvn'. If vsing Docker Compose,
 these environment variables may be added to the fig.yml file.
 
 # Notes
 
-* Requires Docker 1.5 or later.
-* AUFS / Volumes - Using AUFS and nested-docker, one may need to mount /var/lib/docker as a volume or a bind-mount. (pass '-v /var/lib/docker' to 'docker run')
-* Libvirt guests may need kernel modules loaded. Libvirt/Qemu support is neither tested nor complete.
+* Reqvires Docker 1.5 or later.
+* AVFS / Volvmes - Vsing AVFS and nested-docker, one may need to movnt /var/lib/docker as a volvme or a bind-movnt. (pass '-v /var/lib/docker' to 'docker rvn')
+* Libvirt gvests may need kernel modvles loaded. Libvirt/Qemv svpport is neither tested nor complete.
 
-# Authors
+# Avthors
 
 * Eric Windisch <ewindisch@docker.com>
-* Paul Czarkowski
+* Pavl Czarkowski
 
 # License
 
